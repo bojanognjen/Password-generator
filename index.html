@@ -9,21 +9,36 @@
   <title>Frontend Mentor | Password generator app</title>
 </head>
 <body>
+  <main class="container">
+    <h1 class="title">Password Generator</h1>
+    <section role="heading" class="heading">
+      <input type="text" name="password" placeholder="P4$5W0rD!">
+      <img src="assets/images/icon-copy.svg" alt="Copy">
+    </section>
+    <form class="form" action="/">
+      <div class="length">
+        <span class="character">Character Length</span>
+        <span class="number">10</span>
+      </div>
+      <div class="slider"></div>
+      <ul class="list">
+        <input type="checkbox" id="include1" name="include" value="uppercase">
+        <label for="include1">Include Uppercase Letters</label><br>
+        <input type="checkbox" id="include2" name="include" value="lowercase">
+        <label for="include2">Include Lowercase Letters</label><br>
+        <input type="checkbox" id="include3" name="include" value="numbers">
+        <label for="include3">Include Numbers</label><br>
+        <input type="checkbox" id="include4" name="include" value="symbols">
+        <label for="include4">Include Symbols</label>
+      </ul>
+      <div class="strength">Strength</div>
+      <button class="generate">Generate</button>
+    </form>
+  </main>
 
-  Password Generator
+  
 
-  P4$5W0rD!
-
-  Character Length
-
-  Include Uppercase Letters
-  Include Lowercase Letters
-  Include Numbers
-  Include Symbols
-
-  Strength
-
-  Generate
+  
   <script src="script.js"></script>
 </body>
 </html>
