@@ -1,4 +1,25 @@
+@font-face {
+    font-family: 'JetBrains Mono';  /* Name to use in CSS */
+    src: url('./assets/fonts/static/JetBrainsMono-Bold.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
 :root {
+
+    /* Primary Colors */
+
+    --light-green: hsl(127deg 100% 82%);
+    --red: hsl(0deg 91% 63%);
+    --orange: hsl(13deg 95% 66%);
+    --dark-yellow: hsl(42deg 91% 68%);
+
+    /* Neutral Colors */
+
+    --background: hsl(248deg 15% 11%);
+    --white: hsl(252deg 11% 91%);
+    --gray: hsl(251deg 9% 53%);
+    --dark-gray: hsl(248deg 10% 15%);
 
 }
 
@@ -54,4 +75,70 @@
     min-height: 100vh;
     display: grid;
     place-content: center;
+    font-family: 'JetBrains Mono';
+    color: var(--white);
+    background-color: var(--background);
+  }
+
+  .container {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .title {
+    color: var(--gray);
+    font-size: 1rem;
+    text-align: center;
+  }
+
+  .heading {
+    background-color: var(--dark-gray);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.1rem;
+  }
+
+  .heading input,
+  .heading input:focus{
+    background: transparent;
+    border: none;
+    color: var(--white);
+    outline: none;
+  }
+
+  .heading input::placeholder {
+    font-size: 1.5rem;
+  }
+
+  .heading .copy {
+    width: 21px;
+    height: 24px;
+  }
+
+  .form {
+    background-color: var(--dark-gray);
+    padding: 1.1rem;
+    display: grid;
+    gap: 1rem;
+  }
+
+  .form .length {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .form .length .character {
+    font-size: 18px;
+  }
+
+  .form .length .number {
+    color:var(--light-green);
+    font-size: 1.5rem;
+  }
+
+  .slider {
+    Stao si na slideru
   }
