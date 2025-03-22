@@ -1,11 +1,12 @@
-const hidden = document.querySelector('.hidden');
+const hidden1 = document.querySelector('.hidden1');
+const hidden2 = document.querySelector('.hidden2');
 const rangeInput = document.querySelector('.slider');
 const charLength = document.querySelector('.number');
 const generateButton = document.querySelector('.button');
 const uppercaseCheckbox = document.querySelector('#include1');
 const lowercaseCheckbox = document.querySelector('#include2');
-const numbersCheckbox = document.querySelector('#include2');
-const symbolsCheckbox = document.querySelector('#include2');
+const numbersCheckbox = document.querySelector('#include3');
+const symbolsCheckbox = document.querySelector('#include4');
 
 const uppercaseLetters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 const lowercaseLetters = 'abcdefghijklmnopqrstuvwxyz';
@@ -34,9 +35,15 @@ function calculatePassword(length) {
     lowercaseCheckbox.checked ? allCharacters += lowercaseLetters : null;
     numbersCheckbox.checked ? allCharacters += numbers : null;
     symbolsCheckbox.checked ? allCharacters += symbols : null;
-    allCharacters == '' ? hidden.style.display = 'block' : hidden.style.display = 'none';
-    
+    allCharacters == '' ? hidden1.style.display = 'block' : hidden1.style.display = 'none';
+    if (length == 0) {
+        hidden2.style.display = 'block', 
+        hidden2.innerHTML = `<p>Character length is ${length}.</p>`;
+    } else {
+        hidden2.style.display = 'none';
+    }
     const allCharactersArray = Array.from(allCharacters);
+    console.log(allCharactersArray);
     let password = '';
 
     for (let i = 1; i <= length; i++) {
@@ -48,7 +55,7 @@ function calculatePassword(length) {
 }
 
 function display(phrase) {
-    console.log("Stao si tamo gdje treba da ukljucis sve tipove simbola u password");
+    console.log(phrase);
 }
 
 function calculateAndDisplayPassword(e) {

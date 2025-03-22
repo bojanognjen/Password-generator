@@ -117,10 +117,10 @@
     height: 24px;
   }
 
-  .hidden {
+  .hidden1,
+  .hidden2 {
     display: none;
     color: red;
-    border:1px solid  red;
   }
 
   .form {
