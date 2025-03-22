@@ -117,6 +117,12 @@
     height: 24px;
   }
 
+  .hidden {
+    display: none;
+    color: red;
+    border:1px solid  red;
+  }
+
   .form {
     background-color: var(--dark-gray);
     padding: 1.1rem;
@@ -145,7 +151,9 @@
     background-color: var(--background);
     cursor: pointer;
   }
-  .slider::-moz-range-thumb {
+
+  .slider::-moz-range-thumb,
+  .slider::-webkit-slider-thumb {
     border-radius: 50%;
     background-color: var(--white);
     height: 1.75rem;
@@ -153,6 +161,16 @@
     border: none;
   }
 
+  .slider::-webkit-slider-thumb:hover,
+  .slider::-webkit-slider-thumb:active {
+    background-color: var(--background);
+    outline: 2px solid var(--light-green);
+    cursor: pointer;
+  }
+
+
+
+  .slider::-moz-range-thumb:active,
   .slider::-moz-range-thumb:hover {
     background-color: var(--background);
     outline: 2px solid var(--light-green);
@@ -237,5 +255,19 @@
     text-transform: uppercase;
     padding: 1em;
     border: none;
+    cursor: pointer;
+  }
+
+  .button:hover {
+    background-color: transparent;
+    color: var(--light-green);
+    outline:2px solid var(--light-green);
+  }
+
+  .button:hover img {
+    filter: invert(83%) sepia(51%) saturate(347%) hue-rotate(69deg);
+  }
+
+  .heading img:hover {
     cursor: pointer;
   }
