@@ -18,21 +18,43 @@
     <form class="form" action="/">
       <div class="length">
         <span class="character">Character Length</span>
-        <span class="number">10</span>
+        <span class="number">0</span>
       </div>
       <input type="range" class="slider" min="0" max="20" value="0">
-      <ul class="list">
-        <input type="checkbox" id="include1" name="include" value="uppercase">
-        <label for="include1">Include Uppercase Letters</label><br>
-        <input type="checkbox" id="include2" name="include" value="lowercase">
-        <label for="include2">Include Lowercase Letters</label><br>
-        <input type="checkbox" id="include3" name="include" value="numbers">
-        <label for="include3">Include Numbers</label><br>
-        <input type="checkbox" id="include4" name="include" value="symbols">
-        <label for="include4">Include Symbols</label>
-      </ul>
-      <div class="strength">Strength</div>
-      <button class="generate">Generate</button>
+      <section role class="list">
+        <div class="checkbox-container">
+          <input type="checkbox" id="include1" value="uppercase">
+          <label for="include1">Include Uppercase Letters</label>
+        </div>
+        <div class="checkbox-container">
+          <input type="checkbox" id="include2" value="lowercase">
+          <label for="include2">Include Lowercase Letters</label>
+        </div>
+        <div class="checkbox-container">
+          <input type="checkbox" id="include3" value="numbers">
+          <label for="include3">Include Numbers</label>
+        </div>
+        <div class="checkbox-container">
+          <input type="checkbox" id="include4" value="symbols">
+          <label for="include4">Include Symbols</label>
+        </div>
+      </section>
+      <section class="strength">
+        <div class="strength-title">Strength</div>
+        <div class="strength-difficulty">
+          <span class="difficulty-text"></span>
+          <div class="ribs">
+            <div class="rib"></div>
+            <div class="rib"></div>
+            <div class="rib"></div>
+            <div class="rib"></div>
+          </div>
+        </div>
+      </section>
+      <button class="button">
+        <span class="generate">Generate</span>
+        <img src="assets/images/icon-arrow-right.svg" alt="Arrow">
+      </button>
     </form>
   </main>
 

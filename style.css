@@ -121,7 +121,7 @@
     background-color: var(--dark-gray);
     padding: 1.1rem;
     display: grid;
-    gap: 1rem;
+    gap: 2rem;
   }
 
   .form .length {
@@ -140,5 +140,102 @@
   }
 
   .slider {
-    Stao si na slideru
+    appearance: none;
+    height: .5rem;
+    background-color: var(--background);
+    cursor: pointer;
+  }
+  .slider::-moz-range-thumb {
+    border-radius: 50%;
+    background-color: var(--white);
+    height: 1.75rem;
+    width: 1.75rem;
+    border: none;
+  }
+
+  .slider::-moz-range-thumb:hover {
+    background-color: var(--background);
+    outline: 2px solid var(--light-green);
+    cursor: pointer;
+  }
+
+  .list {
+    display: grid;
+    gap: 1.25rem;
+    font-size: 1.125rem;
+  }
+
+  .list .checkbox-container {
+    display: flex;
+    align-items: center;
+  }
+
+  .list .checkbox-container input[type="checkbox"] {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+  }
+
+  .list .checkbox-container label {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+  }
+
+  .list .checkbox-container label::before {
+    content: '';
+    width: 1.25rem;
+    height: 1.25rem;
+    border: 2px solid var(--white);
+    margin-right: 1.25rem;
+  }
+
+  .list .checkbox-container label:hover::before,
+  .list .checkbox-container input[type="checkbox"]:hover + label::before,
+  .list .checkbox-container input[type="checkbox"]:checked + label::before  {
+    background-color: var(--light-green);
+    border-color: var(--light-green);
+  }
+
+  .list .checkbox-container input[type="checkbox"]:checked + label::before {
+    content: url(assets/images/icon-check.svg);
+    color: var(--background);
+    display: grid;
+    place-content: center;
+  }
+
+  .strength {
+    background-color: #18171f;
+    padding: 1em;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .strength .strength-title {
+    text-transform: uppercase;
+    color: var(--gray);
+  }
+
+  .ribs {
+    width: 3.96em;
+    height: 1.75em;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .rib {
+    border: 2px solid var(--white);
+    width: 0.625rem;
+  }
+
+  .button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5em;
+    background-color: var(--light-green);
+    text-transform: uppercase;
+    padding: 1em;
+    border: none;
+    cursor: pointer;
   }
