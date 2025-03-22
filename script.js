@@ -1,5 +1,4 @@
 const hidden = document.querySelector('.hidden');
-const form = document.querySelector('.form');
 const rangeInput = document.querySelector('.slider');
 const charLength = document.querySelector('.number');
 const generateButton = document.querySelector('.button');
@@ -7,8 +6,6 @@ const uppercaseCheckbox = document.querySelector('#include1');
 const lowercaseCheckbox = document.querySelector('#include2');
 const numbersCheckbox = document.querySelector('#include2');
 const symbolsCheckbox = document.querySelector('#include2');
-
-
 
 const uppercaseLetters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 const lowercaseLetters = 'abcdefghijklmnopqrstuvwxyz';
@@ -31,20 +28,36 @@ function lengthChange(e) {
 
 rangeInput.addEventListener('input', lengthChange);
 
-function calculatePassword(e) {
-    e.preventDefault();
-    const allCharacters = '';
+function calculatePassword(length) {
+    let allCharacters = '';
     uppercaseCheckbox.checked ? allCharacters += uppercaseLetters : null;
     lowercaseCheckbox.checked ? allCharacters += lowercaseLetters : null;
     numbersCheckbox.checked ? allCharacters += numbers : null;
     symbolsCheckbox.checked ? allCharacters += symbols : null;
-    allCharacters == '' ? hidden.style.display = 'block' : null;
+    allCharacters == '' ? hidden.style.display = 'block' : hidden.style.display = 'none';
     
-    const generateLength = rangeInput.value;
+    const allCharactersArray = Array.from(allCharacters);
     let password = '';
+
+    for (let i = 1; i <= length; i++) {
+        const randomIndex = Math.floor(Math.random() * allCharactersArray.length);
+        password += allCharactersArray[randomIndex];
+    }
+    return password;
 
 }
 
-generateButton.addEventListener('click', calculatePassword);
+function display(phrase) {
+    console.log("Stao si tamo gdje treba da ukljucis sve tipove simbola u password");
+}
+
+function calculateAndDisplayPassword(e) {
+    e.preventDefault();
+    const passwordLength = rangeInput.value;
+    const password = calculatePassword(passwordLength);
+    display(password);
+}
+
+generateButton.addEventListener('click', calculateAndDisplayPassword);
 
 
