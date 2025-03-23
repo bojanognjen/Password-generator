@@ -30,28 +30,51 @@ function lengthChange(e) {
 rangeInput.addEventListener('input', lengthChange);
 
 function calculatePassword(length) {
-    let allCharacters = '';
-    uppercaseCheckbox.checked ? allCharacters += uppercaseLetters : null;
-    lowercaseCheckbox.checked ? allCharacters += lowercaseLetters : null;
-    numbersCheckbox.checked ? allCharacters += numbers : null;
-    symbolsCheckbox.checked ? allCharacters += symbols : null;
-    allCharacters == '' ? hidden1.style.display = 'block' : hidden1.style.display = 'none';
+
+    let characterSets = [];
+
+    uppercaseCheckbox.checked ? characterSets.push(uppercaseLetters): null;
+    lowercaseCheckbox.checked ? characterSets.push(lowercaseLetters): null;
+    numbersCheckbox.checked ? characterSets.push(numbers): null;
+    symbolsCheckbox.checked ? characterSets.push(symbols): null;
+
+    characterSets.length === 0 ? hidden1.style.display = 'block' : hidden1.style.display = 'none';
     if (length == 0) {
         hidden2.style.display = 'block', 
         hidden2.innerHTML = `<p>Character length is ${length}.</p>`;
     } else {
         hidden2.style.display = 'none';
     }
-    const allCharactersArray = Array.from(allCharacters);
-    console.log(allCharactersArray);
-    let password = '';
 
-    for (let i = 1; i <= length; i++) {
-        const randomIndex = Math.floor(Math.random() * allCharactersArray.length);
-        password += allCharactersArray[randomIndex];
+    let passwordArray = [];
+    let remainingLength = length;
+    let typeDistribution = Array(characterSets.length).fill(1);
+    remainingLength -= characterSets.length;
+
+
+    // It makes array where every element has value of 1 and
+    // it secure that every characterSet has it's symbol in password
+    for (let i = 0; i < remainingLength; i++) {
+        let randomIndex = Math.floor(Math.random() * characterSets.length);
+        typeDistribution[randomIndex]++;
     }
-    return password;
 
+
+    //It makes this draw of this password
+    characterSets.forEach((set, index) => {
+        for (let i = 0; i < typeDistribution[index]; i++) {
+            passwordArray.push(set[Math.floor(Math.random() * set.length)]);
+        }
+    });
+
+    
+    //It's swapping elements of password
+    for (let i = passwordArray.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [passwordArray[i], passwordArray[j]] = [passwordArray[j], passwordArray[i]];
+    }
+    
+    return passwordArray.join('');
 }
 
 function display(phrase) {
