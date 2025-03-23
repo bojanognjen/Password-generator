@@ -117,9 +117,13 @@
     font-size: 1.5rem;
   }
 
-  .heading .copy {
+  .heading img {
     width: 21px;
     height: 24px;
+  }
+
+  .heading img:hover {
+    filter: invert(0%) sepia(0%) saturate(0%) hue-rotate(0deg);
   }
 
   .hidden1,
@@ -237,6 +241,19 @@
   .strength .strength-title {
     text-transform: uppercase;
     color: var(--gray);
+    display: flex;
+    align-items: center;
+    font-size: 1.1rem;
+  }
+
+  .strength-difficulty {
+    display: flex;
+    align-items: center;
+    gap: .4rem;
+  }
+
+  .difficulty-text {
+    font-size: 1rem;
   }
 
   .ribs {
@@ -279,13 +296,8 @@
 
   .toast {
     position: absolute;
-    background-color: var(--dark-gray); /* Green success color */
-    right: 0px;
-    bottom: -2rem;
-    color: white;
-    padding: 10px 15px;
-    border: 1px solid var(--white);
-    border-radius: 5px;
+    right: 2.6rem;
+    color: var(--light-green);
     font-size: 14px;
     opacity: 0;
     transition: opacity 0.5s ease-in-out;

@@ -3,13 +3,16 @@ const hidden2 = document.querySelector('.hidden2');
 const passwordInput = document.querySelector('input[name="password"]');
 const copyIcon = document.querySelector('.heading img');
 const toast = document.querySelector(".toast");
+const form = document.querySelector('.form');
 const rangeInput = document.querySelector('.slider');
 const charLength = document.querySelector('.number');
+const difficultyText = document.querySelector('.difficulty-text');
 const generateButton = document.querySelector('.button');
 const uppercaseCheckbox = document.querySelector('#include1');
 const lowercaseCheckbox = document.querySelector('#include2');
 const numbersCheckbox = document.querySelector('#include3');
 const symbolsCheckbox = document.querySelector('#include4');
+const ribs = document.querySelectorAll('.rib');
 
 const uppercaseLetters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 const lowercaseLetters = 'abcdefghijklmnopqrstuvwxyz';
@@ -37,19 +40,26 @@ copyIcon.addEventListener("click", function() {
       
        toast.classList.add("show");
 
-     // Hide toast after 1.5 seconds
-     setTimeout(() => {
-       toast.classList.remove("show");
-     }, 1000);
-
    }).catch(err => {
      console.error("Failed to copy:", err);
    });
 });
 
-function calculatePassword(length) {
+function strength(difficulty, diffIndex) {
+    difficultyText.innerText = difficulty;
 
+    const colors = ["red", "orange", "yellow", "green"];
+
+    ribs.forEach((rib, index) => {
+        index < diffIndex ? rib.style.backgroundColor = colors[diffIndex - 1] : rib.style.backgroundColor = "hsl(248deg 15% 11%)";
+    });
+}
+
+function calculatePassword(length) {
+    toast.classList.remove("show");
     let characterSets = [];
+    let difficulty = '';
+    let diffIndex = 0;
 
     uppercaseCheckbox.checked ? characterSets.push(uppercaseLetters): null;
     lowercaseCheckbox.checked ? characterSets.push(lowercaseLetters): null;
@@ -77,7 +87,6 @@ function calculatePassword(length) {
         typeDistribution[randomIndex]++;
     }
 
-
     //It makes this draw of this password
     characterSets.forEach((set, index) => {
         for (let i = 0; i < typeDistribution[index]; i++) {
@@ -85,20 +94,35 @@ function calculatePassword(length) {
         }
     });
 
-    
+    if (passwordArray.length < 5) {
+        difficulty = "TOO WEAK!";
+        diffIndex = 1;
+    } else if (passwordArray.length < 6 && typeDistribution.length < 2) {
+        difficulty = "TOO WEAK!";
+        diffIndex = 1;
+    } else if (typeDistribution.length < 2 || passwordArray.length < 8) {
+        difficulty = "WEAK";
+        diffIndex = 2;
+    } else if (typeDistribution.length < 4 || passwordArray.length < 12) {
+        difficulty = "MEDIUM";
+        diffIndex = 3;
+    } else {
+        difficulty = "STRONG";
+        diffIndex = 4;
+    }
+
     //It's swapping elements of password
     for (let i = passwordArray.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
         [passwordArray[i], passwordArray[j]] = [passwordArray[j], passwordArray[i]];
     }
+    strength(difficulty, diffIndex);
     
     return passwordArray.join('');
 }
 
 function display(phrase) {
-    console.log(toast);
     passwordInput.value = phrase;
-    console.log("Podesavanje window.addEventlistenera u vezi sa thumbom, i nakon toga ispisivanje WEAK, MEDIUM, STRONG");
 }
 
 function calculateAndDisplayPassword(e) {
@@ -109,3 +133,8 @@ function calculateAndDisplayPassword(e) {
 }
 
 generateButton.addEventListener('click', calculateAndDisplayPassword);
+document.addEventListener('DOMContentLoaded', ()=> {
+    passwordInput.value = "";
+    rangeInput.value = rangeInput.min;
+    form.reset();
+});
