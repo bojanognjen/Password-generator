@@ -1,5 +1,8 @@
 const hidden1 = document.querySelector('.hidden1');
 const hidden2 = document.querySelector('.hidden2');
+const passwordInput = document.querySelector('input[name="password"]');
+const copyIcon = document.querySelector('.heading img');
+const toast = document.querySelector(".toast");
 const rangeInput = document.querySelector('.slider');
 const charLength = document.querySelector('.number');
 const generateButton = document.querySelector('.button');
@@ -28,6 +31,21 @@ function lengthChange(e) {
 }
 
 rangeInput.addEventListener('input', lengthChange);
+
+copyIcon.addEventListener("click", function() {
+    navigator.clipboard.writeText(passwordInput.value).then(() => {
+      
+       toast.classList.add("show");
+
+     // Hide toast after 1.5 seconds
+     setTimeout(() => {
+       toast.classList.remove("show");
+     }, 1000);
+
+   }).catch(err => {
+     console.error("Failed to copy:", err);
+   });
+});
 
 function calculatePassword(length) {
 
@@ -78,7 +96,9 @@ function calculatePassword(length) {
 }
 
 function display(phrase) {
-    console.log(phrase);
+    console.log(toast);
+    passwordInput.value = phrase;
+    console.log("Podesavanje window.addEventlistenera u vezi sa thumbom, i nakon toga ispisivanje WEAK, MEDIUM, STRONG");
 }
 
 function calculateAndDisplayPassword(e) {
@@ -89,5 +109,3 @@ function calculateAndDisplayPassword(e) {
 }
 
 generateButton.addEventListener('click', calculateAndDisplayPassword);
-
-
