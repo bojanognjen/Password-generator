@@ -6,7 +6,7 @@ const toast = document.querySelector(".toast");
 const form = document.querySelector('.form');
 const rangeInput = document.querySelector('.slider');
 const charLength = document.querySelector('.number');
-const difficultyText = document.querySelector('.difficulty-text');
+let difficultyText = document.querySelector('.difficulty-text');
 const generateButton = document.querySelector('.button');
 const uppercaseCheckbox = document.querySelector('#include1');
 const lowercaseCheckbox = document.querySelector('#include2');
@@ -67,16 +67,14 @@ function calculatePassword(length) {
     numbersCheckbox.checked ? characterSets.push(numbers): null;
     symbolsCheckbox.checked ? characterSets.push(symbols): null;
 
-    characterSets.length === 0 ? hidden1.style.display = 'block' : hidden1.style.display = 'none';
+    characterSets.length == 0 ? hidden1.style.display = 'block' : hidden1.style.display = 'none';
     if (length == 0) {
         hidden2.style.display = 'block', 
         hidden2.innerHTML = `<p>Character length is ${length}.</p>`;
-
     } else {
         hidden2.style.display = 'none';
     }
-
-    characterSets.length === 0 || length == 0 ? difficultyText = "" : null;
+    
 
     let passwordArray = [];
     let remainingLength = length;
@@ -120,8 +118,16 @@ function calculatePassword(length) {
         const j = Math.floor(Math.random() * (i + 1));
         [passwordArray[i], passwordArray[j]] = [passwordArray[j], passwordArray[i]];
     }
-    strength(difficulty, diffIndex);
-    
+
+    if (characterSets.length == 0 || length == 0) {
+        difficultyText.innerText = "";
+        ribs.forEach(rib => {
+            rib.style.backgroundColor = "hsl(248deg 15% 11%)";
+            rib.style.borderColor = "hsl(252deg 11% 91%)";
+        }) 
+    } else {
+        strength(difficulty, diffIndex);
+    }
     return passwordArray.join('');
 }
 
