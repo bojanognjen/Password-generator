@@ -130,6 +130,8 @@
   .hidden2 {
     display: none;
     color: red;
+    max-width: 100%;
+    padding: 0 1rem;
   }
 
   .form {
@@ -155,6 +157,7 @@
   }
 
   .slider {
+    -webkit-appearance: none;
     appearance: none;
     height: .5rem;
     background-color: var(--background);
@@ -163,6 +166,8 @@
 
   .slider::-moz-range-thumb,
   .slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
     border-radius: 50%;
     background-color: var(--white);
     height: 1.75rem;
@@ -305,4 +310,31 @@
   
   .show {
     opacity: 1;
+  }
+
+  @media (min-width: 37.5em) {  /* 600px */
+    
+    .heading {
+      width: 33.75rem;
+    }
+
+    .form {
+      width: 33.75rem;
+    }
+
+    .title {
+      font-size: 1.5rem;
+    }
+
+    .difficulty-text {
+      font-size: 1.5rem;
+    }
+  }
+  
+  /* Small Desktop */
+  @media (min-width: 56.25em) { /* 900px */
+  }
+  
+  /* Large Desktop */
+  @media (min-width: 75em) { /* 1200px */
   }

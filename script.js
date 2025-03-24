@@ -48,10 +48,11 @@ copyIcon.addEventListener("click", function() {
 function strength(difficulty, diffIndex) {
     difficultyText.innerText = difficulty;
 
-    const colors = ["red", "orange", "yellow", "green"];
+    const colors = ["hsl(0deg 91% 63%)", "hsl(13deg 95% 66%)", "hsl(42deg 91% 68%)", "hsl(127deg 100% 82%)"];
 
     ribs.forEach((rib, index) => {
         index < diffIndex ? rib.style.backgroundColor = colors[diffIndex - 1] : rib.style.backgroundColor = "hsl(248deg 15% 11%)";
+        index < diffIndex ? rib.style.borderColor = colors[diffIndex - 1] : rib.style.borderColor = "hsl(252deg 11% 91%)";
     });
 }
 
@@ -70,9 +71,12 @@ function calculatePassword(length) {
     if (length == 0) {
         hidden2.style.display = 'block', 
         hidden2.innerHTML = `<p>Character length is ${length}.</p>`;
+
     } else {
         hidden2.style.display = 'none';
     }
+
+    characterSets.length === 0 || length == 0 ? difficultyText = "" : null;
 
     let passwordArray = [];
     let remainingLength = length;
