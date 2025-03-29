@@ -164,9 +164,16 @@
     cursor: pointer;
   }
 
-  .slider::-moz-range-thumb,
   .slider::-webkit-slider-thumb {
-    -webkit-appearance: none;
+    appearance: none;
+    border-radius: 50%;
+    background-color: var(--white);
+    height: 1.75rem;
+    width: 1.75rem;
+    border: none;
+  }
+
+  .slider::-moz-range-thumb {
     appearance: none;
     border-radius: 50%;
     background-color: var(--white);
